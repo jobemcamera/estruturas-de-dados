@@ -72,7 +72,7 @@ void Hash::imprimir()
   {
     if (estrutura[i].obterRa() != -1)
     {
-      cout << i << ":" << estrutura[i].obterRa() <<  estrutura[i].obterNome() << endl;
+      cout << "Indice " << i << ":" << estrutura[i].obterRa() << " " << estrutura[i].obterNome() << endl;
     }
   }
 }
