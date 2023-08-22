@@ -121,7 +121,27 @@ void ArvoreBinariaBusca::removerBusca(Aluno aluno, No *&NoAtual) // funcao recur
 
 void ArvoreBinariaBusca::deletarNo(No *&NoAtual)
 {
+  No *temp = NoAtual; // NoAtual é o ponteiro apontando para o item que vou deletar
+
+  if (NoAtual->filho_esquerda == NULL)
+  {
+    NoAtual = NoAtual->filho_direita;
+    delete temp;
+  }
+  else if (NoAtual->filho_direita == NULL)
+  {
+    NoAtual = NoAtual->filho_esquerda;
+    delete temp;
+  }
+  else // no tem 2 filhos
+  {
+    Aluno alunoSucessor; // (ra = -1, aluno = " ")
+    obterSucessor(alunoSucessor, NoAtual);
+    NoAtual->aluno = alunoSucessor;
+    removerBusca(alunoSucessor, NoAtual->filho_direita); // remover o valor que ficou igual 
+  }
 }
+
 void ArvoreBinariaBusca::obterSucessor(Aluno &alunoSucessor, No *temp)
 {
 }
