@@ -137,13 +137,23 @@ void ArvoreBinariaBusca::deletarNo(No *&NoAtual)
   {
     Aluno alunoSucessor; // (ra = -1, aluno = " ")
     obterSucessor(alunoSucessor, NoAtual);
-    NoAtual->aluno = alunoSucessor;
+    NoAtual->aluno = alunoSucessor; // so pega o valor, nao mudamos os ponteiros dele
     removerBusca(alunoSucessor, NoAtual->filho_direita); // remover o valor que ficou igual 
   }
 }
 
 void ArvoreBinariaBusca::obterSucessor(Aluno &alunoSucessor, No *temp)
 {
+  // da um passo a direita e depois sempre a esquerda (menor valor a direita)
+  temp = temp->filho_direita;
+
+  // chegar no menor valor
+  while (temp->filho_esquerda != NULL)
+  {
+    temp = temp->filho_esquerda;
+  }
+
+  alunoSucessor = temp->aluno;  // manda o valor do sucessor para o deletarNo
 }
 
 void ArvoreBinariaBusca::buscar(Aluno &aluno, bool &busca)
