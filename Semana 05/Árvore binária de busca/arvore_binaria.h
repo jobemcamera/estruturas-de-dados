@@ -23,6 +23,9 @@ public:
   bool estaCheio();
   void inserir(Aluno aluno);
   void remover(Aluno aluno);
+  void removerBusca(Aluno aluno, No *&NoAtual);           // chamar no remover()
+  void deletarNo(No *&NoAtual);                           // chamar no remover()
+  void obterSucessor(Aluno &alunoSucessor, No *temp);     // chamar no remover()
   void buscar(Aluno &aluno, bool &busca);
   void imprimirPreOrdem(No *NoAtual);
   void imprimirEmOrdem(No *NoAtual);
