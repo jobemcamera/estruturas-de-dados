@@ -64,7 +64,7 @@ void ArvoreBinariaBusca::inserir(Aluno aluno)
 
       while (temp != NULL)
       {
-        // verifica se vai inserir a esquerda 
+        // verifica se vai inserir a esquerda
         if (aluno.obeterRa() < temp->aluno.obeterRa())
         {
           if (temp->filho_esquerda == NULL)
@@ -77,7 +77,7 @@ void ArvoreBinariaBusca::inserir(Aluno aluno)
             temp = temp->filho_esquerda; // proximo laço
           }
         }
-        // verifica se vai inserir a direita 
+        // verifica se vai inserir a direita
         else // aluno.obeterRa() > temp->aluno.obeterRa()
         {
           if (temp->filho_direita == NULL)
@@ -98,9 +98,34 @@ void ArvoreBinariaBusca::inserir(Aluno aluno)
 void ArvoreBinariaBusca::remover(Aluno aluno)
 {
 }
+
 void ArvoreBinariaBusca::buscar(Aluno &aluno, bool &busca)
 {
+  busca = false;
+  No *NoAtual = raiz;
+
+  while (NoAtual != NULL)
+  {
+    // procura se esta a esquerda da raiz
+    if (aluno.obeterRa() < NoAtual->aluno.obeterRa())
+    {
+      NoAtual = NoAtual->filho_esquerda; // proximo laço
+    }
+    // procura se esta a direita da raiz
+    else if (aluno.obeterRa() > NoAtual->aluno.obeterRa())
+    {
+      NoAtual = NoAtual->filho_direita; // proximo laço
+    }
+    // valor encontrado
+    else
+    {
+      busca = true;
+      aluno = NoAtual->aluno; // aluno (por referencia) so vem com RA, agora passamos a informacao completa (NoAtual) nome e RA
+      break;
+    }
+  }
 }
+
 void ArvoreBinariaBusca::imprimirPreOrdem(No *NoAtual)
 {
 }
