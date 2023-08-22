@@ -97,6 +97,33 @@ void ArvoreBinariaBusca::inserir(Aluno aluno)
 
 void ArvoreBinariaBusca::remover(Aluno aluno)
 {
+  removerBusca(aluno, raiz);
+}
+
+void ArvoreBinariaBusca::removerBusca(Aluno aluno, No *&NoAtual) // funcao recursiva
+{
+  // busca a esquerda
+  if (aluno.obeterRa() < NoAtual->aluno.obeterRa())
+  {
+    removerBusca(aluno, NoAtual->filho_esquerda);
+  }
+  // busca a direita
+  else if (aluno.obeterRa() > NoAtual->aluno.obeterRa())
+  {
+    removerBusca(aluno, NoAtual->filho_direita);
+  }
+  // achou aluno
+  else
+  {
+    deletarNo(NoAtual);
+  }
+}
+
+void ArvoreBinariaBusca::deletarNo(No *&NoAtual)
+{
+}
+void ArvoreBinariaBusca::obterSucessor(Aluno &alunoSucessor, No *temp)
+{
 }
 
 void ArvoreBinariaBusca::buscar(Aluno &aluno, bool &busca)
