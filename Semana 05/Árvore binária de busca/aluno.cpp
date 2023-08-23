@@ -18,7 +18,7 @@ string Aluno::obterNome()
   return nome;
 }
 
-int Aluno::obeterRa()
+int Aluno::obterRa()
 {
   return ra;
 }

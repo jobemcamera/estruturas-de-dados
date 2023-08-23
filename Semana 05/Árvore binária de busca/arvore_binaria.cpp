@@ -73,7 +73,7 @@ void ArvoreBinariaBusca::inserir(Aluno aluno)
       while (temp != NULL)
       {
         // verifica se vai inserir a esquerda
-        if (aluno.obeterRa() < temp->aluno.obeterRa())
+        if (aluno.obterRa() < temp->aluno.obterRa())
         {
           if (temp->filho_esquerda == NULL)
           {
@@ -86,7 +86,7 @@ void ArvoreBinariaBusca::inserir(Aluno aluno)
           }
         }
         // verifica se vai inserir a direita
-        else // aluno.obeterRa() > temp->aluno.obeterRa()
+        else // aluno.obterRa() > temp->aluno.obterRa()
         {
           if (temp->filho_direita == NULL)
           {
@@ -111,12 +111,12 @@ void ArvoreBinariaBusca::remover(Aluno aluno)
 void ArvoreBinariaBusca::removerBusca(Aluno aluno, No *&NoAtual) // funcao recursiva
 {
   // busca a esquerda
-  if (aluno.obeterRa() < NoAtual->aluno.obeterRa())
+  if (aluno.obterRa() < NoAtual->aluno.obterRa())
   {
     removerBusca(aluno, NoAtual->filho_esquerda);
   }
   // busca a direita
-  else if (aluno.obeterRa() > NoAtual->aluno.obeterRa())
+  else if (aluno.obterRa() > NoAtual->aluno.obterRa())
   {
     removerBusca(aluno, NoAtual->filho_direita);
   }
@@ -172,12 +172,12 @@ void ArvoreBinariaBusca::buscar(Aluno &aluno, bool &busca)
   while (NoAtual != NULL)
   {
     // procura se esta a esquerda da raiz
-    if (aluno.obeterRa() < NoAtual->aluno.obeterRa())
+    if (aluno.obterRa() < NoAtual->aluno.obterRa())
     {
       NoAtual = NoAtual->filho_esquerda; // proximo laço
     }
     // procura se esta a direita da raiz
-    else if (aluno.obeterRa() > NoAtual->aluno.obeterRa())
+    else if (aluno.obterRa() > NoAtual->aluno.obterRa())
     {
       NoAtual = NoAtual->filho_direita; // proximo laço
     }
@@ -199,7 +199,7 @@ void ArvoreBinariaBusca::imprimirPreOrdem(No *NoAtual)
   if (NoAtual != NULL)
   {
     cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
-    cout << NoAtual->aluno.obeterRa() << endl;
+    cout << NoAtual->aluno.obterRa() << endl;
 
     imprimirPreOrdem(NoAtual->filho_esquerda);
     imprimirPreOrdem(NoAtual->filho_direita);
@@ -214,7 +214,7 @@ void ArvoreBinariaBusca::imprimirEmOrdem(No *NoAtual)
     imprimirEmOrdem(NoAtual->filho_esquerda);
 
     cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
-    cout << NoAtual->aluno.obeterRa() << endl;
+    cout << NoAtual->aluno.obterRa() << endl;
 
     imprimirEmOrdem(NoAtual->filho_direita);
   }
@@ -230,6 +230,6 @@ void ArvoreBinariaBusca::imprimirPosOrdem(No *NoAtual)
     imprimirPosOrdem(NoAtual->filho_direita);
 
     cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
-    cout << NoAtual->aluno.obeterRa() << endl;
+    cout << NoAtual->aluno.obterRa() << endl;
   }
 }

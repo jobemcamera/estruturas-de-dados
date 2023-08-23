@@ -11,5 +11,5 @@ public:
   Aluno();
   Aluno(int r, std::string n);
   string obterNome();
-  int obeterRa();
+  int obterRa();
 };
