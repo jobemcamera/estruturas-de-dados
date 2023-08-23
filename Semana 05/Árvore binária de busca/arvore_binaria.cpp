@@ -207,10 +207,21 @@ void ArvoreBinariaBusca::imprimirEmOrdem(No *NoAtual)
 
     cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
     cout << NoAtual->aluno.obeterRa() << endl;
-    
+
     imprimirEmOrdem(NoAtual->filho_direita);
   }
 }
 void ArvoreBinariaBusca::imprimirPosOrdem(No *NoAtual)
 {
+  // Raiz é a ultima a ser impressa
+  // Imprime todos os filhos antes dos pais
+
+  if (NoAtual != NULL)
+  {
+    imprimirPosOrdem(NoAtual->filho_esquerda);
+    imprimirPosOrdem(NoAtual->filho_direita);
+
+    cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
+    cout << NoAtual->aluno.obeterRa() << endl;
+  }
 }
