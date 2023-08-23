@@ -185,6 +185,17 @@ void ArvoreBinariaBusca::buscar(Aluno &aluno, bool &busca)
 
 void ArvoreBinariaBusca::imprimirPreOrdem(No *NoAtual)
 {
+  // Raiz é a primeira a ser impressa
+  // Imprime todos os pais antes dos filhos
+
+  if (NoAtual != NULL)
+  {
+    cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
+    cout << NoAtual->aluno.obeterRa() << endl;
+
+    imprimirPreOrdem(NoAtual->filho_esquerda);
+    imprimirPreOrdem(NoAtual->filho_direita);
+  }
 }
 void ArvoreBinariaBusca::imprimirEmOrdem(No *NoAtual)
 {
