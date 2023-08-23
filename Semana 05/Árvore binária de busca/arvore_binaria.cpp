@@ -10,10 +10,18 @@ ArvoreBinariaBusca::ArvoreBinariaBusca() // construtor
 
 ArvoreBinariaBusca::~ArvoreBinariaBusca() // destrutor
 {
+  deletarArvore(raiz);
 }
 
 void ArvoreBinariaBusca::deletarArvore(No *NoAtual)
 {
+  if (NoAtual != NULL)
+  {
+    deletarArvore(NoAtual->filho_esquerda);
+    deletarArvore(NoAtual->filho_direita);
+
+    delete NoAtual;
+  }
 }
 
 No *ArvoreBinariaBusca::obterRaiz()
