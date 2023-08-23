@@ -199,6 +199,17 @@ void ArvoreBinariaBusca::imprimirPreOrdem(No *NoAtual)
 }
 void ArvoreBinariaBusca::imprimirEmOrdem(No *NoAtual)
 {
+  // Sequência crescente
+
+  if (NoAtual != NULL)
+  {
+    imprimirEmOrdem(NoAtual->filho_esquerda);
+
+    cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
+    cout << NoAtual->aluno.obeterRa() << endl;
+    
+    imprimirEmOrdem(NoAtual->filho_direita);
+  }
 }
 void ArvoreBinariaBusca::imprimirPosOrdem(No *NoAtual)
 {
