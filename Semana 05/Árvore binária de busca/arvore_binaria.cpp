@@ -198,7 +198,7 @@ void ArvoreBinariaBusca::imprimirPreOrdem(No *NoAtual)
 
   if (NoAtual != NULL)
   {
-    cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
+    cout <<"Nome: " << NoAtual->aluno.obterNome() << " RA: ";
     cout << NoAtual->aluno.obterRa() << endl;
 
     imprimirPreOrdem(NoAtual->filho_esquerda);
@@ -213,7 +213,7 @@ void ArvoreBinariaBusca::imprimirEmOrdem(No *NoAtual)
   {
     imprimirEmOrdem(NoAtual->filho_esquerda);
 
-    cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
+    cout <<"Nome: " << NoAtual->aluno.obterNome() << " RA: ";
     cout << NoAtual->aluno.obterRa() << endl;
 
     imprimirEmOrdem(NoAtual->filho_direita);
@@ -229,7 +229,7 @@ void ArvoreBinariaBusca::imprimirPosOrdem(No *NoAtual)
     imprimirPosOrdem(NoAtual->filho_esquerda);
     imprimirPosOrdem(NoAtual->filho_direita);
 
-    cout <<"Nome: " << NoAtual->aluno.obterNome() << "/ RA: ";
+    cout <<"Nome: " << NoAtual->aluno.obterNome() << " RA: ";
     cout << NoAtual->aluno.obterRa() << endl;
   }
 }
