@@ -97,11 +97,11 @@ void ArvoreAVL::remover(Aluno aluno)
   removerBusca(aluno, raiz, diminuiu);
 }
 
-void ArvoreAVL::removerbusca(Aluno aluno, No *&NoAtual, bool &diminuiu)
+void ArvoreAVL::removerBusca(Aluno aluno, No *&NoAtual, bool &diminuiu)
 {
   if (aluno.obterRa() < NoAtual->aluno.obterRa())
   {
-    removerbusca(aluno, NoAtual->filho_esquerda, diminuiu);
+    removerBusca(aluno, NoAtual->filho_esquerda, diminuiu);
     if (diminuiu)
     {
       NoAtual->fatorB += 1;
@@ -109,7 +109,7 @@ void ArvoreAVL::removerbusca(Aluno aluno, No *&NoAtual, bool &diminuiu)
   }
   else if (aluno.obterRa() > NoAtual->aluno.obterRa())
   {
-    removerbusca(aluno, NoAtual->filho_direita, diminuiu);
+    removerBusca(aluno, NoAtual->filho_direita, diminuiu);
     if (diminuiu)
     {
       NoAtual->fatorB -= 1;
@@ -121,7 +121,7 @@ void ArvoreAVL::removerbusca(Aluno aluno, No *&NoAtual, bool &diminuiu)
   }
   if (NoAtual != NULL)
   {
-    realizarotacao(NoAtual);
+    realizaRotacao(NoAtual);
     if (diminuiu && NoAtual->fatorB != 0)
     {
       diminuiu = false;
@@ -129,26 +129,31 @@ void ArvoreAVL::removerbusca(Aluno aluno, No *&NoAtual, bool &diminuiu)
   }
 }
 
-void ArvoreAVL::deletarNo(No *&NoAtual)
+void ArvoreAVL::deletarNo(No *&NoAtual, bool &diminuiu)
 {
-  No *temp = NoAtual; // NoAtual é o ponteiro apontando para o item que vou deletar
-
+  No *temp = NoAtual;
   if (NoAtual->filho_esquerda == NULL)
   {
     NoAtual = NoAtual->filho_direita;
+    diminuiu = true;
     delete temp;
   }
   else if (NoAtual->filho_direita == NULL)
   {
     NoAtual = NoAtual->filho_esquerda;
+    diminuiu = true;
     delete temp;
   }
-  else // no tem 2 filhos
+  else
   {
-    Aluno alunoSucessor; // (ra = -1, aluno = " ")
-    obterSucessor(alunoSucessor, NoAtual);
-    NoAtual->aluno = alunoSucessor;                      // so pega o valor, nao mudamos os ponteiros dele
-    removerBusca(alunoSucessor, NoAtual->filho_direita); // remover o valor que ficou igual
+    Aluno AlunoSucessor;
+    obterSucessor(AlunoSucessor, NoAtual);
+    NoAtual->aluno = AlunoSucessor;
+    removerBusca(AlunoSucessor, NoAtual->filho_direita, diminuiu);
+    if (diminuiu)
+    {
+      NoAtual->fatorB -= 1;
+    }
   }
 }
 
