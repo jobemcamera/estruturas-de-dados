@@ -1,14 +1,15 @@
 #include <iostream>
 #include <cstddef>
-#include "arvore_avl.h"
+#include "arvore_avl.h" //modificado
+
 using namespace std;
 
-ArvoreAVL::ArvoreAVL() // construtor
+ArvoreAVL::ArvoreAVL() // construtor  //mudounome
 {
   raiz = NULL;
 }
 
-ArvoreAVL::~ArvoreAVL() // destrutor
+ArvoreAVL::~ArvoreAVL() // destrutor //mudounome
 {
   deletarArvore(raiz);
 }
@@ -18,6 +19,7 @@ void ArvoreAVL::deletarArvore(No *NoAtual)
   if (NoAtual != NULL)
   {
     deletarArvore(NoAtual->filho_esquerda);
+
     deletarArvore(NoAtual->filho_direita);
 
     delete NoAtual;
@@ -48,14 +50,14 @@ bool ArvoreAVL::estaCheio()
   }
 }
 
-void ArvoreAVL::inserir(Aluno aluno)
+void ArvoreAVL::inserir(Aluno aluno) // modificada
 {
   bool cresceu;
   insereRecursivo(raiz, aluno, cresceu);
 }
 
 void ArvoreAVL::insereRecursivo(No *&NoAtual, Aluno aluno, bool &cresceu)
-{
+{ // novo
   if (NoAtual == NULL)
   {
     NoAtual = new No;
@@ -66,7 +68,6 @@ void ArvoreAVL::insereRecursivo(No *&NoAtual, Aluno aluno, bool &cresceu)
     cresceu = true;
     return;
   }
-
   if (aluno.obterRa() < NoAtual->aluno.obterRa())
   {
     insereRecursivo(NoAtual->filho_esquerda, aluno, cresceu);
@@ -74,13 +75,13 @@ void ArvoreAVL::insereRecursivo(No *&NoAtual, Aluno aluno, bool &cresceu)
     {
       NoAtual->fatorB -= 1;
     }
-    else
+  }
+  else
+  {
+    insereRecursivo(NoAtual->filho_direita, aluno, cresceu);
+    if (cresceu)
     {
-      insereRecursivo(NoAtual->filho_direita, aluno, cresceu);
-      if (cresceu)
-      {
-        NoAtual->fatorB += 1;
-      }
+      NoAtual->fatorB += 1;
     }
   }
   realizaRotacao(NoAtual);
@@ -91,14 +92,14 @@ void ArvoreAVL::insereRecursivo(No *&NoAtual, Aluno aluno, bool &cresceu)
   }
 }
 
-void ArvoreAVL::remover(Aluno aluno)
+void ArvoreAVL::remover(Aluno aluno) // modificada
 {
   bool diminuiu;
   removerBusca(aluno, raiz, diminuiu);
 }
 
 void ArvoreAVL::removerBusca(Aluno aluno, No *&NoAtual, bool &diminuiu)
-{
+{ // modificada
   if (aluno.obterRa() < NoAtual->aluno.obterRa())
   {
     removerBusca(aluno, NoAtual->filho_esquerda, diminuiu);
@@ -157,42 +158,34 @@ void ArvoreAVL::deletarNo(No *&NoAtual, bool &diminuiu)
   }
 }
 
-void ArvoreAVL::obterSucessor(Aluno &alunoSucessor, No *temp)
+void ArvoreAVL::obterSucessor(Aluno &AlunoSucessor, No *temp)
 {
-  // da um passo a direita e depois sempre a esquerda (menor valor a direita)
   temp = temp->filho_direita;
-
-  // chegar no menor valor
   while (temp->filho_esquerda != NULL)
   {
     temp = temp->filho_esquerda;
   }
-
-  alunoSucessor = temp->aluno; // manda o valor do sucessor para o deletarNo
+  AlunoSucessor = temp->aluno;
 }
 
 void ArvoreAVL::buscar(Aluno &aluno, bool &busca)
 {
   busca = false;
   No *NoAtual = raiz;
-
   while (NoAtual != NULL)
   {
-    // procura se esta a esquerda da raiz
     if (aluno.obterRa() < NoAtual->aluno.obterRa())
     {
-      NoAtual = NoAtual->filho_esquerda; // proximo laço
+      NoAtual = NoAtual->filho_esquerda;
     }
-    // procura se esta a direita da raiz
     else if (aluno.obterRa() > NoAtual->aluno.obterRa())
     {
-      NoAtual = NoAtual->filho_direita; // proximo laço
+      NoAtual = NoAtual->filho_direita;
     }
-    // valor encontrado
     else
     {
       busca = true;
-      aluno = NoAtual->aluno; // aluno (por referencia) so vem com RA, agora passamos a informacao completa (NoAtual) nome e RA
+      aluno = NoAtual->aluno;
       break;
     }
   }
@@ -200,61 +193,57 @@ void ArvoreAVL::buscar(Aluno &aluno, bool &busca)
 
 void ArvoreAVL::imprimirPreOrdem(No *NoAtual)
 {
-  // Raiz é a primeira a ser impressa
-  // Imprime todos os pais antes dos filhos
-
   if (NoAtual != NULL)
   {
-    cout << "Nome: " << NoAtual->aluno.obterNome() << " RA: ";
+    cout << NoAtual->aluno.obterNome() << ": ";
     cout << NoAtual->aluno.obterRa() << endl;
 
     imprimirPreOrdem(NoAtual->filho_esquerda);
+
     imprimirPreOrdem(NoAtual->filho_direita);
   }
 }
+
 void ArvoreAVL::imprimirEmOrdem(No *NoAtual)
 {
-  // Sequência crescente
-
   if (NoAtual != NULL)
   {
     imprimirEmOrdem(NoAtual->filho_esquerda);
 
-    cout << "Nome: " << NoAtual->aluno.obterNome() << " RA: ";
+    cout << NoAtual->aluno.obterNome() << ": ";
     cout << NoAtual->aluno.obterRa() << endl;
 
     imprimirEmOrdem(NoAtual->filho_direita);
   }
 }
+
 void ArvoreAVL::imprimirPosOrdem(No *NoAtual)
 {
-  // Raiz é a ultima a ser impressa
-  // Imprime todos os filhos antes dos pais
-
   if (NoAtual != NULL)
   {
     imprimirPosOrdem(NoAtual->filho_esquerda);
+
     imprimirPosOrdem(NoAtual->filho_direita);
 
-    cout << "Nome: " << NoAtual->aluno.obterNome() << " RA: ";
+    cout << NoAtual->aluno.obterNome() << ": ";
     cout << NoAtual->aluno.obterRa() << endl;
   }
 }
 
-void ArvoreAVL::rotacaoDireita(No *&pai)
+void ArvoreAVL::rotacaoDireita(No *&pai) // novo
 {
-  No *novoPai = pai->filho_esquerda;
-  pai->filho_esquerda = novoPai->filho_direita;
-  novoPai->filho_direita = pai;
-  pai = novoPai;
+  No *novopai = pai->filho_esquerda;
+  pai->filho_esquerda = novopai->filho_direita;
+  novopai->filho_direita = pai;
+  pai = novopai;
 }
 
-void ArvoreAVL::rotacaoEsquerda(No *&pai)
+void ArvoreAVL::rotacaoEsquerda(No *&pai) // novo
 {
-  No *novoPai = pai->filho_direita;
-  pai->filho_direita = novoPai->filho_esquerda;
-  novoPai->filho_esquerda = pai;
-  pai = novoPai;
+  No *novopai = pai->filho_direita;
+  pai->filho_direita = novopai->filho_esquerda;
+  novopai->filho_esquerda = pai;
+  pai = novopai;
 }
 
 void ArvoreAVL::rotacoesEsquerdaDireita(No *&pai)

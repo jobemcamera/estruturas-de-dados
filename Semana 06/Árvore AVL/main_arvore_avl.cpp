@@ -64,7 +64,7 @@ int main()
     {
       cout << "Digite 1 para fazer a impressao em PRE ORDEM!\n";
       cout << "Digite 2 para fazer a impressao em ORDEM!\n";
-      cout << "Digite 3 para fazer a impressao em POR ORDEM!\n";
+      cout << "Digite 3 para fazer a impressao em POS ORDEM!\n";
       cin >> imp;
       if (imp == 1)
       {
