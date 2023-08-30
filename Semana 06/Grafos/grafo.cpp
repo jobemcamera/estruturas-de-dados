@@ -127,6 +127,24 @@ int Grafo::obterGrau(TipoItem item)
   return grau;
 }
 
-void Grafo::imprimirMatriz() {}
+void Grafo::imprimirMatriz()
+{
+  cout << "Matriz de adjacencia:\n";
+  for (int i = 0; i < maxVertices; i++)
+  {
+    for (int j = 0; j < maxVertices; j++)
+    {
+      cout << matrizAdjacencias[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
 
-void Grafo::imprimirVertice() {}
+void Grafo::imprimirVertice()
+{
+  cout << "Lista de vertices::\n";
+   for (int i = 0; i < numVertices; i++)
+  {
+    cout << i << ": " << vertices[i] << endl;
+  }
+}
