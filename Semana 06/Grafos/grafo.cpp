@@ -55,12 +55,23 @@ int Grafo::obterIndice(TipoItem item)
   }
 }
 
-bool Grafo::estaCheio() 
+bool Grafo::estaCheio()
 {
   return (numVertices == maxVertices);
 }
 
-void Grafo::insereVertice(TipoItem item) {}
+void Grafo::insereVertice(TipoItem item)
+{
+  if (estaCheio())
+  {
+    cout << "O numero maximo de vertices foi alcancado\n";
+  }
+  else
+  {
+    vertices[numVertices] = item;
+    numVertices++;
+  }
+}
 
 void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso) {}
 
