@@ -73,7 +73,7 @@ void Grafo::insereVertice(TipoItem item)
   }
 }
 
-void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso) 
+void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso)
 {
   int linha = obterIndice(noSaida);
   int coluna = obterIndice(noEntrada);
@@ -81,15 +81,28 @@ void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso)
   if (linha == -1 || coluna == -1)
   {
     cout << "Voce ainda nao inseriu esse vertice! Insira-o antes!\n";
-    
+
     return;
   }
 
   matrizAdjacencias[linha][coluna] = peso;
-  matrizAdjacencias[coluna][linha] = peso;  // remover se for grafo direcionado
+  matrizAdjacencias[coluna][linha] = peso; // remover se for grafo direcionado
 }
 
-int Grafo::obterPeso(TipoItem noSaida, TipoItem noEntrada) {}
+int Grafo::obterPeso(TipoItem noSaida, TipoItem noEntrada)
+{
+  int linha = obterIndice(noSaida);
+  int coluna = obterIndice(noEntrada);
+
+  if (linha == -1 || coluna == -1)
+  {
+    cout << "Voce ainda nao inseriu esse vertice! Insira-o antes!\n";
+
+    return;
+  }
+
+  return (matrizAdjacencias[linha][coluna]);
+}
 
 int Grafo::obterGrau(TipoItem item) {}
 
