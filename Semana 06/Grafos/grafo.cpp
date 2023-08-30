@@ -73,7 +73,14 @@ void Grafo::insereVertice(TipoItem item)
   }
 }
 
-void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso) {}
+void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso) 
+{
+  int linha = obterIndice(noSaida);
+  int coluna = obterIndice(noEntrada);
+
+  matrizAdjacencias[linha][coluna] = peso;
+  matrizAdjacencias[coluna][linha] = peso;  // remover se for grafo direcionado
+}
 
 int Grafo::obterPeso(TipoItem noSaida, TipoItem noEntrada) {}
 
