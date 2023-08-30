@@ -27,16 +27,33 @@ Grafo::Grafo(int max, int valorArestaNula) // construtor
 
 Grafo::~Grafo() // destrutor
 {
-  delete [] vertices;
+  delete[] vertices;
 
   for (int i = 0; i < maxVertices; i++)
   {
-    delete [] matrizAdjacencias[i]; // vetores linha
+    delete[] matrizAdjacencias[i]; // vetores linha
   }
-  delete [] matrizAdjacencias;
+  delete[] matrizAdjacencias;
 }
 
-int Grafo::obterIndice(TipoItem item) {}
+int Grafo::obterIndice(TipoItem item)
+{
+  int indice = 0;
+
+  while (item != vertices[indice])
+  {
+    indice++;
+  }
+
+  if (item == vertices[indice])
+  {
+    return indice;
+  }
+  else
+  {
+    return -1;
+  }
+}
 
 bool Grafo::estaCheio() {}
 
