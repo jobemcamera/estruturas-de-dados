@@ -98,7 +98,7 @@ int Grafo::obterPeso(TipoItem noSaida, TipoItem noEntrada)
   {
     cout << "Voce ainda nao inseriu esse vertice! Insira-o antes!\n";
 
-    return;
+    return -1;
   }
 
   return (matrizAdjacencias[linha][coluna]);
@@ -113,7 +113,7 @@ int Grafo::obterGrau(TipoItem item)
   {
     cout << "Voce ainda nao inseriu esse vertice! Insira-o antes!\n";
 
-    return;
+    return -1;
   }
 
   for (int i = 0; i < maxVertices; i++)
