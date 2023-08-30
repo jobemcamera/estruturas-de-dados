@@ -78,6 +78,13 @@ void Grafo::insereAresta(TipoItem noSaida, TipoItem noEntrada, int peso)
   int linha = obterIndice(noSaida);
   int coluna = obterIndice(noEntrada);
 
+  if (linha == -1 || coluna == -1)
+  {
+    cout << "Voce ainda nao inseriu esse vertice! Insira-o antes!\n";
+    
+    return;
+  }
+
   matrizAdjacencias[linha][coluna] = peso;
   matrizAdjacencias[coluna][linha] = peso;  // remover se for grafo direcionado
 }
