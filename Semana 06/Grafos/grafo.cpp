@@ -2,7 +2,7 @@
 #include "grafo.h"
 using namespace std;
 
-Grafo::Grafo(int max, int valorArestaNula)  // construtor
+Grafo::Grafo(int max, int valorArestaNula) // construtor
 {
   arestaNula = 0;
   maxVertices = max;
@@ -25,7 +25,16 @@ Grafo::Grafo(int max, int valorArestaNula)  // construtor
   }
 }
 
-Grafo::~Grafo() {}
+Grafo::~Grafo() // destrutor
+{
+  delete [] vertices;
+
+  for (int i = 0; i < maxVertices; i++)
+  {
+    delete [] matrizAdjacencias[i]; // vetores linha
+  }
+  delete [] matrizAdjacencias;
+}
 
 int Grafo::obterIndice(TipoItem item) {}
 
